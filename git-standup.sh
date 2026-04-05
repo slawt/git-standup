@@ -164,7 +164,7 @@ elif [[ -n "$ROOT_ARG" ]]; then
     while IFS= read -r git_dir; do
         repo_path="${git_dir%/.git}"
         REPOS+=("$repo_path")
-    done < <(find "$ROOT_ARG" -maxdepth 3 -name ".git" -type d 2>/dev/null | sort)
+    done < <(find -L "$ROOT_ARG" -maxdepth 3 -name ".git" -type d 2>/dev/null | sort)
 else
     # Default: use current directory
     REPOS+=("$(pwd)")
